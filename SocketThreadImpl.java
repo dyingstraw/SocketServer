@@ -14,11 +14,14 @@ import java.util.Queue;
  * @author: dyingstraw
  * @create: 2019-03-23 21:51
  **/
-public class SocketThreadImpl implements Runnable {
+public class SocketThreadImpl implements Runnable, SocketThread {
     private Queue<String> messageQueue = new PriorityQueue<>();
     private Socket socket;
     private String sessionId;
     private OutputStream o;
+
+    public SocketThreadImpl() {
+    }
 
     public SocketThreadImpl(Socket socket, String sessionId) throws IOException {
         this.socket = socket;
@@ -28,6 +31,20 @@ public class SocketThreadImpl implements Runnable {
     // 获取sessionId
     public String getSessionId() {
         return sessionId;
+    }
+
+    public Socket getSocket() throws IOException {
+
+        return socket;
+    }
+
+    public void setSocket(Socket socket) throws IOException {
+        this.o = socket.getOutputStream();
+        this.socket = socket;
+    }
+
+    public void setSessionId(String sessionId) {
+        this.sessionId = sessionId;
     }
 
     // 获得消息监听

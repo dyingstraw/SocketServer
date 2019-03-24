@@ -13,6 +13,7 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) throws IOException {
         // 启动监听线程
+        ConfigFactory.setSocketThreadName("com.jike.socketServer.SocketThreadImpl");
         SocketServer socketServer = new SocketServer("localhost",8888);
         new Thread(socketServer).start();
         //启动交互线程
@@ -20,13 +21,24 @@ public class Main {
             @Override
             public void run() {
                 while (true){
+
+                    Iterator<Runnable> it = ((ThreadPool) (socketServer.getPoolExecutor())).getWorkList().iterator();
+                    int i=0;
+                        System.out.printf("|socket编号| socket会话标识|\n");
+                    while (it.hasNext()){
+                        i++;
+                        SocketThreadImpl temp = (SocketThreadImpl) it.next();
+                        System.out.printf("|________________________|\n");
+                        System.out.printf("|   %03d   |   %s  \n",i,temp.getSessionId());
+
+                    }
                     Scanner scanner = new Scanner(System.in);
-                    System.out.println("请输入要发送的连接的端口号:");
+                    System.out.println("请输入socket标识:");
                     String sid = scanner.nextLine();
                     System.out.println("请输入要发送的内容:");
                     String ccc = scanner.nextLine();
 
-                    Iterator<Runnable> it = ((ThreadPool) (socketServer.getPoolExecutor())).getWorkList().iterator();
+                    it = ((ThreadPool) (socketServer.getPoolExecutor())).getWorkList().iterator();
                     while (it.hasNext()){
                         SocketThreadImpl temp = (SocketThreadImpl) it.next();
                         System.out.println(temp.getSessionId());
