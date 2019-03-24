@@ -1,7 +1,5 @@
 package com.jike.socketServer;
 
-import com.jike.java_base.SocketTest;
-
 import java.io.IOException;
 import java.util.Iterator;
 import java.util.Scanner;
@@ -30,7 +28,7 @@ public class Main {
 
                     Iterator<Runnable> it = ((ThreadPool) (socketServer.getPoolExecutor())).getWorkList().iterator();
                     while (it.hasNext()){
-                        SocketThread temp = (SocketThread) it.next();
+                        SocketThreadImpl temp = (SocketThreadImpl) it.next();
                         System.out.println(temp.getSessionId());
                         if (temp.getSessionId().equals(sid)){
                             temp.send(ccc);

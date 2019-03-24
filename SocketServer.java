@@ -58,7 +58,7 @@ public class SocketServer implements Runnable{
             Socket socket = ssocket.accept();
             if (socket!=null){
                 // 把新进的socket放入线程池,标识随意
-                SocketThread r = new SocketThread(socket, String.valueOf(socket.getPort()));
+                SocketThreadImpl r = new SocketThreadImpl(socket, String.valueOf(socket.getPort()));
                 poolExecutor.execute(r);
             }
         }
