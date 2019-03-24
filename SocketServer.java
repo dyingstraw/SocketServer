@@ -24,7 +24,7 @@ public class SocketServer implements Runnable{
     private ArrayBlockingQueue<Runnable> queue=new ArrayBlockingQueue<Runnable>(15);
     // 为socket创建线程池
     ThreadPoolExecutor poolExecutor = new ThreadPool(
-            10,15,50,
+            1024,1024+512,50,
             TimeUnit.SECONDS,queue);
 
     public SocketServer(String address, int port) {

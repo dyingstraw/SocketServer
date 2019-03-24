@@ -11,3 +11,9 @@ SocketThread 每一个连接会建立一个这样的线程，并放入线程池
 
 ## ConfigFactory
 配置工程，可配置连接线程，线程池
+
+````
+建立socket服务器的时候，先配置ConfigFactory
+// 配置连接线程
+ConfigFactory.setSocketThreadName("com.jike.socketServer.SocketThreadImpl");
+````

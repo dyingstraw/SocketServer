@@ -53,12 +53,4 @@ public class ConfigFactory {
     public static void setThreadPoolName(String threadPoolName) {
         ConfigFactory.threadPoolName = threadPoolName;
     }
-
-    public static void main(String[] args) throws IllegalAccessException, InstantiationException, ClassNotFoundException, NoSuchMethodException, InvocationTargetException, IOException {
-
-        SocketThread s = buildSocketThread("com.jike.socketServer.SocketThreadImpl", new Socket(), "9960");
-        System.out.println(s);
-        SocketThread s1 = buildSocketThread("com.jike.socketServer.SocketThreadImpl", new Socket(), "9960");
-        System.out.println(s1);
-    }
 }

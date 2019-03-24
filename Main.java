@@ -12,8 +12,9 @@ import java.util.Scanner;
  **/
 public class Main {
     public static void main(String[] args) throws IOException {
-        // 启动监听线程
+        // 配置连接线程
         ConfigFactory.setSocketThreadName("com.jike.socketServer.SocketThreadImpl");
+        // 启动监听线程
         SocketServer socketServer = new SocketServer("localhost",8888);
         new Thread(socketServer).start();
         //启动交互线程
