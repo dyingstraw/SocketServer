@@ -7,7 +7,7 @@ public interface SocketThread extends Runnable{
     // SocketThread(Socket socket,String sessionId);
     void setSessionId(String sessionId);
     void setSocket(Socket socket) throws IOException;
-    void onMessage(String message);
+    void onMessage(String message) throws IOException;
     String getSessionId();
     void onClosed(Socket socket);
     void close();

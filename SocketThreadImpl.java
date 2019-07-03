@@ -24,6 +24,7 @@ public class SocketThreadImpl implements Runnable, SocketThread {
     }
 
     public SocketThreadImpl(Socket socket, String sessionId) throws IOException {
+
         this.socket = socket;
         this.sessionId = sessionId;
         this.o = socket.getOutputStream();
@@ -48,8 +49,8 @@ public class SocketThreadImpl implements Runnable, SocketThread {
     }
 
     // 获得消息监听
-    public void onMessage(String message){
-        System.out.println(message);
+    public void onMessage(String message) throws IOException {
+        Util.decodePackage(message.getBytes());
     }
 
     // 线程关闭监听
