@@ -76,6 +76,7 @@ public class SocketServer implements Runnable{
         ssocket.bind(new InetSocketAddress(this.getPort()));
         while (true){
             Socket socket = ssocket.accept();
+            socket.setSendBufferSize(1);
             if (socket!=null){
                 // 把新进的socket放入线程池,标识随意
                 // SocketThreadImpl r = new SocketThreadImpl(socket, String.valueOf(socket.getPort()));
